@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6-windows;net5-windows;netcoreapp3.1;net48;net472</TargetFrameworks>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -18,11 +18,11 @@
     <PackageTags>wpf mvvm node-editor controls</PackageTags>
     <Version>4.1.0</Version>
     <PackageReleaseNotes>
-      > - Features:
-      >   - Added EditorGestures.Selection.DefaultMouseAction to make it easier to change between mouse buttons for selection
-      >   - Added ItemsSelectStartedCommand and ItemsSelectCompletedCommand dependency properties to NodifyEditor for better undo/redo support
-      > - Bugfixes:
-      >   - Fixed NodifyEditor.SelectedItems being empty after selection is completed
+      &gt; - Features:
+      &gt;   - Added EditorGestures.Selection.DefaultMouseAction to make it easier to change between mouse buttons for selection
+      &gt;   - Added ItemsSelectStartedCommand and ItemsSelectCompletedCommand dependency properties to NodifyEditor for better undo/redo support
+      &gt; - Bugfixes:
+      &gt;   - Fixed NodifyEditor.SelectedItems being empty after selection is completed
     </PackageReleaseNotes>
     <AssemblyOriginatorKeyFile>..\build\Nodify.snk</AssemblyOriginatorKeyFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
