@@ -189,6 +189,7 @@ namespace Nodify
 
         public static readonly DependencyProperty StartedCommandProperty = DependencyProperty.Register(nameof(StartedCommand), typeof(ICommand), typeof(PendingConnection));
         public static readonly DependencyProperty CompletedCommandProperty = DependencyProperty.Register(nameof(CompletedCommand), typeof(ICommand), typeof(PendingConnection));
+        public static readonly DependencyProperty ShouldSnapCommandProperty = DependencyProperty.Register(nameof(ShouldSnapCommand), typeof(ICommand), typeof(PendingConnection));
 
         /// <summary>
         /// Gets or sets the command to invoke when the pending connection is started.
@@ -210,6 +211,16 @@ namespace Nodify
         {
             get => (ICommand?)GetValue(CompletedCommandProperty);
             set => SetValue(CompletedCommandProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the command to invoke when the pending connection is snapping.
+        /// The command's parameter will be set to the desired <see cref="Connector"/>'s <see cref="FrameworkElement.DataContext"/>.
+        /// </summary>
+        public ICommand? ShouldSnapCommand
+        {
+            get => (ICommand?)GetValue(ShouldSnapCommandProperty);
+            set => SetValue(ShouldSnapCommandProperty, value);
         }
 
         #endregion
@@ -281,6 +292,10 @@ namespace Nodify
                     // Update the connector's anchor and snap to it if snapping is enabled
                     if (EnableSnapping && connector is Connector target)
                     {
+                        if(ShouldSnapCommand != null)
+                        {
+                            if(!ShouldSnapCommand.CanExecute(target.DataContext)) return;
+                        }
                         target.UpdateAnchor();
                         TargetAnchor = target.Anchor;
                     }
